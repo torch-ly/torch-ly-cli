@@ -3,7 +3,7 @@
 let {send} = require("./commands/send");
 let {changeConfig} = require("./commands/config");
 
-let {config} = require("./config");
+let {config} = require("~/.config/torchly/config.json");
 
 const { program } = require('commander');
 program.version(require("./package.json").version);
