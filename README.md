@@ -34,3 +34,11 @@ and
 ```Bash
 torchly send --help
 ```
+
+There is also a configuration command, which can change the backend server and port.
+
+```Bash
+torchly config --server http://localhost --port 5000
+```
+
+The current configuration can be viewed with `torchly config ls`.
