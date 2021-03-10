@@ -1,19 +1,14 @@
 let {readFileSync, writeFileSync, existsSync} = require("fs")
 
-let path = "~/.config/torchly/config.json"
+let path = "./config.json"
 
 let config = {};
 
 if (existsSync(path))
-    config = readFileSync(path);
+    config = JSON.parse(readFileSync(path, 'utf8'));
 
 let write = () => {
     writeFileSync(path, JSON.stringify(config));
-}
-
-if (config.server === undefined && config.port === undefined) {
-    config = {server: "http://localhost", port: "5000"};
-    write();
 }
 
 exports.write = write;
