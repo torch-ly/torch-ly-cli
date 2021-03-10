@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { program } = require('commander');
 program.version(require("./package.json").version);
 
@@ -18,11 +20,8 @@ function send(file, options) {
 
     imageToBase64(file)
         .then(response => {
-                console.log(response);
                 axios
-                    .post(options.server + options.port, {
-                        image: response
-                    })
+                    .post(options.server + ":" + options.port + "/cli/upload", response)
                     .then(res => {
                         console.log("Submitted successfully.")
                     })
