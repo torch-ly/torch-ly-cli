@@ -1,33 +1,25 @@
 #!/usr/bin/env node
 
+let {send} = require("./commands/send");
+let {changeConfig} = require("./commands/config");
+
+let {config} = require("./config");
+
 const { program } = require('commander');
 program.version(require("./package.json").version);
-
-const axios = require('axios');
-
-const imageToBase64 = require('image-to-base64');
 
 program
     .command('send <file>')
     .action(send)
-    .option('-s, --server <url>', 'set backend server', "http://localhost")
-    .option('-p, --port <port>', 'set backend server port', "5000")
+    .option('-s, --server <url>', 'set backend server', config.server)
+    .option('-p, --port <port>', 'set backend server port', config.port);
 
+program
+    .command('config')
+    .action(changeConfig)
+    .option('-s, --server <url>', 'set default backend server', config.server)
+    .option('-p, --port <port>', 'set default server port', config.port)
+    .command('ls')
+    .action(() => console.log(config));
 
 program.parse(process.argv);
-
-function send(file, options) {
-
-    imageToBase64(file)
-        .then(response => {
-                axios
-                    .post(options.server + ":" + options.port + "/cli/upload", response)
-                    .then(res => {
-                        console.log("Submitted successfully.")
-                    })
-                    .catch(error => {
-                        console.error(error)
-                    });
-            })
-        .catch(error => console.log(error));
-}
