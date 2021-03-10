@@ -1,0 +1,17 @@
+{
+  "name": "torch-ly-cli",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node ./index.js"
+  },
+  "author": "ondolin",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "commander": "^7.1.0",
+    "image-to-base64": "^2.1.1"
+  }
+}
