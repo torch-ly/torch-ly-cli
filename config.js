@@ -1,6 +1,6 @@
 let {readFileSync, writeFileSync, existsSync} = require("fs")
 
-let path = "./config.json"
+let path = "~/.config/torchly/config.json"
 
 let config = {};
 
